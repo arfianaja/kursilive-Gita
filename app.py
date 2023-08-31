@@ -32,7 +32,7 @@ def video_input(data_src, input_option):
                 os.makedirs('videos')
             with open(os.path.join('videos', vid_bytes.name), 'wb') as f:
                 f.write(vid_bytes.getbuffer())
-    elif data_src == 'Real-Time':
+    elif data_src == 'Real-time':
         vid_file = 'Real-time'
 
     if vid_file:
