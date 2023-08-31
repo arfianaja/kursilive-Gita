@@ -32,11 +32,11 @@ def video_input(data_src, input_option):
                 os.makedirs('videos')
             with open(os.path.join('videos', vid_bytes.name), 'wb') as f:
                 f.write(vid_bytes.getbuffer())
-    elif data_src == 'Webcam':
-        vid_file = 'webcam'
+    elif data_src == 'Real-Time':
+        vid_file = 'Real-time'
 
     if vid_file:
-        if vid_file == 'webcam':
+        if vid_file == 'Real-time':
             cap = cv2.VideoCapture(1)
         else:
             cap = cv2.VideoCapture(vid_file)
@@ -66,7 +66,7 @@ def video_input(data_src, input_option):
             if not ret:
                 st.write("Tidak dapat membaca frame, akhir stream? Keluar ....")
                 break
-            if data_src == 'Webcam':
+            if data_src == 'Real-time':
                 frame = cv2.flip(frame, 1)
 
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -164,7 +164,7 @@ def main():
         st.sidebar.markdown("---")
 
         # Pilihan data sumber
-        input_option = st.sidebar.selectbox("Sumber Data", ["Video", "Webcam"])
+        input_option = st.sidebar.selectbox("Sumber Data", ["Video", "Real-time"])
 
         if input_option:
             video_input(input_option, input_option)  # memperbarui argumen input_option
