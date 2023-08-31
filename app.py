@@ -37,6 +37,7 @@ def video_input(data_src, input_option):
 
     if vid_file:
         if vid_file == 'Real-time':
+            FRAME_WINDOW = st.image([])
             cap = cv2.VideoCapture(0)
         else:
             cap = cv2.VideoCapture(vid_file)
@@ -63,6 +64,7 @@ def video_input(data_src, input_option):
 
         while video_started:
             ret, frame = cap.read()
+            
             if not ret:
                 st.write("Tidak dapat membaca frame, akhir stream? Keluar ....")
                 break
@@ -70,6 +72,7 @@ def video_input(data_src, input_option):
                 frame = cv2.flip(frame, 1)
 
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            FRAME_WINDOW.image(frame)
             output_img, Kursi_Terisi_count, Kursi_Kosong_count = infer_image(frame, None, confidence)
             output.image(output_img)
             curr_time = time.time()
