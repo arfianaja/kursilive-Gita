@@ -38,7 +38,7 @@ def video_input(data_src, input_option):
     if vid_file:
         if vid_file == 'Real-time':
             FRAME_WINDOW = st.image([])
-            cap = cv2.VideoCapture(0)
+            cap = cv2.VideoCapture(1)
         else:
             cap = cv2.VideoCapture(vid_file)
 
